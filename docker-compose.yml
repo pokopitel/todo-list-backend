@@ -1,0 +1,33 @@
+version: "3.7"
+
+services:
+  db:
+    container_name: postgres
+    build:
+      context: ./postgresql/
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./env/.dev.postgres.env
+
+  backend:
+    container_name: backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/be/
+    links:
+      - db
+    ports:
+      - "8080:8080"
+    depends_on: ["db"]
+    env_file:
+      - ./env/.dev.backend.env
+
+volumes:
+  postgres_data:
