@@ -157,7 +157,7 @@ SELECT pg_catalog.setval('public."Todos_id_seq"', 1, false);
 -- Name: User_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pokopitel
 --
 
-SELECT pg_catalog.setval('public."User_id_seq"', 4, true);
+SELECT pg_catalog.setval('public."User_id_seq"', 1, false);
 
 
 --
