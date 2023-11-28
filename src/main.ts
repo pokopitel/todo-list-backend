@@ -14,5 +14,6 @@ async function bootstrap() {
 
   await app.listen(PORT);
   console.log('Server is running at localhost:' + PORT);
+  console.log('Swagger is available on http://localhost:8080/api/#/');
 }
 bootstrap();

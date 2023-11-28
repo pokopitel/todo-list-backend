@@ -32,9 +32,14 @@ export class TodoService {
     return this.prisma.todos.update({ data, where: { id } });
   }
 
-  async findByUser(userId: number) {
+  async findByUser(userId: number, offset: number, limit: number) {
     await this.userService.doesUserExist(userId);
-    const todos = await this.prisma.todos.findMany({ where: { userId } });
+
+    const todos = await this.prisma.todos.findMany({
+      where: { userId },
+      skip: offset,
+      take: limit,
+    });
 
     return todos.sort((a, b) => a.id - b.id);
   }
